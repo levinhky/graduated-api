@@ -24,6 +24,6 @@ mongoose.connect(process.env.MONGODB_URL, () => {
 app.use('/api/v2/category', categoryRoute);
 app.use('/api/v2/product', productRoute);
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log('Sever is running...!');
 })
