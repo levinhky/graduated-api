@@ -19,6 +19,9 @@ dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URL, () => {
   console.log('Database connect successfully!');
+  app.listen(process.env.PORT || 8000, () => {
+    console.log('Sever is running...!');
+  })
 }).catch(err => console.log(err));
 
 function haltOnTimedout(req, res, next) {
@@ -28,7 +31,3 @@ function haltOnTimedout(req, res, next) {
 //routes
 app.use('/api/v2/category', categoryRoute);
 app.use('/api/v2/product', productRoute);
-
-app.listen(process.env.PORT || 8000, () => {
-  console.log('Sever is running...!');
-})
