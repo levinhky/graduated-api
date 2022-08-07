@@ -16,7 +16,7 @@ app.use(cors());
 app.use(morgan('common'));
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URL, () => {
+mongoose.connect('mongodb+srv://rock02:z-rock02@cluster0.7umb5gs.mongodb.net/?retryWrites=true&w=majority', () => {
   console.log('Database connect successfully!');
 }).catch(err => console.log(err));
 
