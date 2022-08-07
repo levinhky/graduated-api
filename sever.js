@@ -11,12 +11,19 @@ const timeout = require('connect-timeout');
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
 
+const haltOnTimedout = (req, res, next) => {
+  if (!req.timedout) {
+    next();
+  }
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('common'));
 dotenv.config();
 app.use(timeout('5s'));
+app.use(haltOnTimedout);
 
 mongoose.connect('mongodb+srv://rock02:z-rock02@cluster0.7umb5gs.mongodb.net/?retryWrites=true&w=majority', () => {
   console.log('Database connect successfully!');
