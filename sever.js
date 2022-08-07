@@ -16,20 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('common'));
 dotenv.config();
-app.use(timeout('5s'));
-app.use(haltOnTimedout);
 
 mongoose.connect('mongodb+srv://rock02:z-rock02@cluster0.7umb5gs.mongodb.net/?retryWrites=true&w=majority', () => {
   console.log('Database connect successfully!');
 }).catch(err => console.log(err));
 
-function haltOnTimedout(req, res, next) {
-  if (!req.timedout) next()
-}
+
 
 //routes
-app.use('/api/v2/category', timeout('5s'), bodyParser.json(), haltOnTimedout, categoryRoute);
-app.use('/api/v2/product', timeout('5s'), bodyParser.json(), haltOnTimedout, productRoute);
+app.use('/api/v2/category', categoryRoute);
+app.use('/api/v2/product', productRoute);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log('Sever is running...!');
