@@ -14,7 +14,7 @@ const productController = {
         const category = await categorySchema.findById(req.body.categoryId);
         await category.updateOne({ $push: { products: savedProduct._id } });
       }
-      res.status(200).json(savedProduct);
+      return res.status(200).json(savedProduct);
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +24,7 @@ const productController = {
   getAllProducts: async (req, res) => {
     try {
       const products = await productSchema.find();
-      res.status(200).json(products);
+      return res.status(200).json(products);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ const productController = {
   getAProduct: async (req, res) => {
     try {
       const product = await productSchema.findOne({ slug: req.query.slug }).populate('categoryId');
-      res.status(200).json(product);
+      return res.status(200).json(product);
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +45,7 @@ const productController = {
     try {
       const product = await productSchema.findById(req.params.id);
       await product.updateOne({ $set: req.body, slug: slugify(req.body.productName) });
-      res.status(200).json('Update successfully!');
+      return res.status(200).json('Update successfully!');
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +59,7 @@ const productController = {
         { $pull: { products: req.params.id } }
       )
       await productSchema.findByIdAndDelete(req.params.id);
-      res.status(200).json('Delete successfully!');
+      return res.status(200).json('Delete successfully!');
     } catch (error) {
       console.log(error);
     }
