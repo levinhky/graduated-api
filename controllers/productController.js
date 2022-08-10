@@ -3,7 +3,6 @@ const categorySchema = require('../models/categorySchema');
 const productSchema = require('../models/productSchema');
 
 const productController = {
-
   // ADD PRODUCT
   addProduct: async (req, res) => {
     try {
@@ -22,8 +21,27 @@ const productController = {
 
   // GET ALL PRODUCTS
   getAllProducts: async (req, res) => {
+    let limit = req.query.limit;
+    let page = req.query.page;
+    let search = req.query.q;
+    let products = null;
+    let sort = req.query.sort;
     try {
-      const products = await productSchema.find();
+      if (!limit && !page) {
+        products = await productSchema.find({});
+      } else {
+        products = await productSchema.find().limit(limit).skip(page);
+      }
+
+      if (search) {
+        products = await productSchema.find({ $text: { $search: search } })
+      }
+
+      if (sort == 'asc') {
+        products = await productSchema.find({}).sort({ _id: 1 });
+      } else if (sort == 'desc') {
+        products = await productSchema.find({}).sort({ _id: -1 });
+      }
       return res.status(200).json(products);
     } catch (error) {
       console.log(error);
