@@ -1,13 +1,24 @@
 const { slugify } = require('../global/functions');
 const categorySchema = require('../models/categorySchema');
 const productSchema = require('../models/productSchema');
+function makeid(length) {
+  let result = '';
+  let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let charactersLength = characters.length;
+  for ( let i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+  }
+  return result;
+}
+
 
 const productController = {
   // ADD PRODUCT
   addProduct: async (req, res) => {
     const randomProductCode =  Math.random().toString(36).substring(2,7).toUpperCase();
     let variants = [];
-    for(let elem of req.body.variants) { variants.push(elem) };
+    for(let elem of req.body.variants) { variants.push({...elem, productCode:(Math.random() + 1).toString(36).substring(7).toUpperCase()}) }
 
     try {
       const newProduct = new productSchema(req.body);
@@ -22,6 +33,7 @@ const productController = {
       return res.status(200).json(savedProduct);
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -51,6 +63,7 @@ const productController = {
       return res.status(200).json(products);
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -61,6 +74,7 @@ const productController = {
       return res.status(200).json(product);
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -72,6 +86,7 @@ const productController = {
       return res.status(200).json('Update successfully!');
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -86,6 +101,7 @@ const productController = {
       return res.status(200).json('Delete successfully!');
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -96,6 +112,7 @@ const productController = {
       return res.json('Products are empty now!')
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -106,8 +123,9 @@ const productController = {
         { $count: "Total" }
       ]);
      return res.status(200).json(totalRows);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
+      return  res.status(500).json(error);
     }
   }
 };

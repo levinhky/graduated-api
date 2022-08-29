@@ -11,6 +11,7 @@ const categoryController = {
       return res.status(200).json(savedCategory);
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -21,6 +22,7 @@ const categoryController = {
       return res.status(200).json(categories);
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -31,6 +33,7 @@ const categoryController = {
       return res.status(200).json(category);
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -42,6 +45,7 @@ const categoryController = {
       return res.status(200).json('Update successfully!');
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -56,6 +60,7 @@ const categoryController = {
       return res.status(200).json('Delete successfully!');
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   },
 
@@ -66,6 +71,7 @@ const categoryController = {
       return res.json('Categories are empty now!')
     } catch (error) {
       console.log(error);
+      return  res.status(500).json(error);
     }
   }
 
