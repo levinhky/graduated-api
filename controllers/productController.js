@@ -5,9 +5,11 @@ const productSchema = require('../models/productSchema');
 const productController = {
   // ADD PRODUCT
   addProduct: async (req, res) => {
+    const randomProductCode =  Math.random().toString(36).substring(2,7).toUpperCase();
     try {
       const newProduct = new productSchema(req.body);
       newProduct.slug = slugify(req.body.productName);
+      newProduct.productCode = randomProductCode;
       const savedProduct = await newProduct.save();
       if (req.body.categoryId) {
         const category = await categorySchema.findById(req.body.categoryId);
