@@ -57,6 +57,16 @@ const categoryController = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  // DELETE ALL CATEGORIES
+  deleteAllCategories: async (req,res) => {
+    try {
+      await categorySchema.deleteMany();
+      return res.json('Categories are empty now!')
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 };

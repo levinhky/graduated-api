@@ -12,5 +12,7 @@ router.get('/find', productController.getAProduct);
 router.put('/update/:id', productController.updateAProduct);
 // DELETE A PRODUCT
 router.delete('/delete/:id', productController.deleteAProduct);
+// DELETE ALL PRODUCT
+router.delete('/drop',productController.deleteAllProduct);
 
 module.exports = router;

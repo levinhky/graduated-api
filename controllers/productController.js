@@ -83,6 +83,16 @@ const productController = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  // DELETE ALL PRODUCTS
+  deleteAllProduct: async (req,res) => {
+    try {
+      await productSchema.deleteMany();
+      return res.json('Products are empty now!')
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
