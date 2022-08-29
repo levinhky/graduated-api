@@ -19,6 +19,9 @@ const productSchema = new mongoose.Schema({
   slug: {
     type: String
   },
+  productCode: {
+    type: String
+  },
   categoryId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
