@@ -22,6 +22,13 @@ const productSchema = new mongoose.Schema({
   productCode: {
     type: String
   },
+  variants: [
+    {
+      size:String,
+      quantity:Number,
+      productCode: String
+    }
+  ],
   categoryId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',

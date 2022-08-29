@@ -6,10 +6,14 @@ const productController = {
   // ADD PRODUCT
   addProduct: async (req, res) => {
     const randomProductCode =  Math.random().toString(36).substring(2,7).toUpperCase();
+    let variants = [];
+    for(let elem of req.body.variants) { variants.push(elem) };
+
     try {
       const newProduct = new productSchema(req.body);
       newProduct.slug = slugify(req.body.productName);
       newProduct.productCode = randomProductCode;
+      newProduct.variants = variants;
       const savedProduct = await newProduct.save();
       if (req.body.categoryId) {
         const category = await categorySchema.findById(req.body.categoryId);
@@ -39,9 +43,9 @@ const productController = {
         products = await productSchema.find({ $text: { $search: search } })
       }
 
-      if (sort == 'asc') {
+      if (sort === 'asc') {
         products = await productSchema.find({}).sort({ _id: 1 });
-      } else if (sort == 'desc') {
+      } else if (sort === 'desc') {
         products = await productSchema.find({}).sort({ _id: -1 });
       }
       return res.status(200).json(products);
@@ -92,6 +96,18 @@ const productController = {
       return res.json('Products are empty now!')
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  // GET LENGTH
+  getRows: async (req,res) => {
+    try {
+     const totalRows = await productSchema.aggregate([
+        { $count: "Total" }
+      ]);
+     return res.status(200).json(totalRows);
+    } catch (e) {
+      console.log(e);
     }
   }
 };

@@ -14,5 +14,7 @@ router.put('/update/:id', productController.updateAProduct);
 router.delete('/delete/:id', productController.deleteAProduct);
 // DELETE ALL PRODUCT
 router.delete('/drop',productController.deleteAllProducts);
+// GET ROWS
+router.get('/rows',productController.getRows);
 
 module.exports = router;
