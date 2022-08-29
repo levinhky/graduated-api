@@ -13,6 +13,6 @@ router.put('/update/:id', productController.updateAProduct);
 // DELETE A PRODUCT
 router.delete('/delete/:id', productController.deleteAProduct);
 // DELETE ALL PRODUCT
-router.delete('/drop',productController.deleteAllProduct);
+router.delete('/drop',productController.deleteAllProducts);
 
 module.exports = router;

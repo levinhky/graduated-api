@@ -86,7 +86,7 @@ const productController = {
   },
 
   // DELETE ALL PRODUCTS
-  deleteAllProduct: async (req,res) => {
+  deleteAllProducts: async (req,res) => {
     try {
       await productSchema.deleteMany();
       return res.json('Products are empty now!')
