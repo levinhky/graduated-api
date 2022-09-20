@@ -75,7 +75,8 @@ const productController = {
     try {
       const product = await productSchema.findById(req.params.id);
       await product.updateOne({ $set: req.body, slug: slugify(req.body.productName) });
-      return res.status(200).json('Update successfully!');
+      products = await productSchema.find({});
+      return res.status(200).json(products);
     } catch (error) {
       console.log(error);
       return  res.status(500).json(error);
@@ -90,7 +91,8 @@ const productController = {
         { $pull: { products: req.params.id } }
       )
       await productSchema.findByIdAndDelete(req.params.id);
-      return res.status(200).json('Delete successfully!');
+      products = await productSchema.find({});
+      return res.status(200).json(products);
     } catch (error) {
       console.log(error);
       return  res.status(500).json(error);

@@ -42,7 +42,8 @@ const categoryController = {
     try {
       const category = await categorySchema.findById(req.params.id);
       await category.updateOne({ $set: req.body });
-      return res.status(200).json('Update successfully!');
+      const categories = await categorySchema.find();
+      return res.status(200).json(categories);
     } catch (error) {
       console.log(error);
       return  res.status(500).json(error);
@@ -57,7 +58,8 @@ const categoryController = {
         { $set: { $categoryId: null } }
       );
       await categorySchema.findByIdAndDelete(req.params.id);
-      return res.status(200).json('Delete successfully!');
+      const categories = await categorySchema.find();
+      return res.status(200).json(categories);
     } catch (error) {
       console.log(error);
       return  res.status(500).json(error);
