@@ -1,25 +1,35 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  productName: {
+  name: {
     type: String,
     required: true
   },
-  productPrice: {
+  price: {
     type: Number,
     required: true
   },
-  productThumbnail: {
-    type: String,
+  thumbnails: [
+    {
+      thumbnail: {
+        type: String
+      },
+    }
+  ],
+  description: {
+    type: String
+  },
+  quantity: {
+    type: Number,
     required: true
   },
-  productDescription: {
-    type: String
+  stockStatus: {
+    type: String,
   },
   slug: {
     type: String
   },
-  productCode: {
+  sku: {
     type: String
   },
   variants: {
@@ -43,6 +53,6 @@ const productSchema = new mongoose.Schema({
   }
 }, {timestamps:true});
 
-productSchema.index({ "productName": "text" }, { unique:true });
+productSchema.index({ "name": "text" }, { unique:true });
 
 module.exports = mongoose.model('Product', productSchema);

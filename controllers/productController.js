@@ -13,8 +13,8 @@ const productController = {
 
     try {
       const newProduct = new productSchema(req.body);
-      newProduct.slug = slugify(req.body.productName);
-      newProduct.productCode = randomProductCode; 
+      newProduct.slug = slugify(req.body.name);
+      newProduct.sku = randomProductCode; 
       newProduct.variants.sizes = sizes;
       newProduct.variants.colors = colors;
       const savedProduct = await newProduct.save();

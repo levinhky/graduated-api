@@ -68,7 +68,7 @@ const categoryController = {
   deleteAllCategories: async (req,res) => {
     try {
       await categorySchema.deleteMany();
-      return res.json('Categories are empty now!')
+      return res.json('Categories are empty now!'); 
     } catch (error) {
       console.log(error);
       return  res.status(500).json(error);

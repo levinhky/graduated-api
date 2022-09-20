@@ -9,6 +9,7 @@ const morgan = require('morgan');
 //routes
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
+const commentRoute = require('./routes/comment')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +24,7 @@ mongoose.connect(process.env.MONGODB_URL, () => {
 //routes
 app.use('/api/v2/categories', categoryRoute);
 app.use('/api/v2/products', productRoute);
+app.use('/api/v2/comments', commentRoute);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log('Sever is running...!');
