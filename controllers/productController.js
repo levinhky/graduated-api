@@ -70,6 +70,18 @@ const productController = {
     }
   },
 
+  getAProductById: async (req, res) => {
+    try {
+      const product = await productSchema.findById(req.params.id).populate('categoryId');
+      console.log(req.params.id)
+      console.log('hehe')
+      return res.status(200).json(product);
+    } catch (error) {
+      console.log(error);
+      return  res.status(500).json(error);
+    }
+  },
+
   // UPDATE A PRODUCT
   updateAProduct: async (req, res) => {
     try {
