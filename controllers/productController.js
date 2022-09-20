@@ -8,8 +8,8 @@ const productController = {
     const randomProductCode =  Math.random().toString(36).substring(2,7).toUpperCase();
     let sizes = [];
     let colors = [];
-    for(let size of req.body.sizes) { sizes.push({...size, productCode:(Math.random() + 1).toString(36).substring(7).toUpperCase()}) };
-    for(let color of req.body.colors) { colors.push({...color}) };
+    if (req.body.sizes) for(let size of req.body.sizes) { sizes.push({...size, productCode:(Math.random() + 1).toString(36).substring(7).toUpperCase()}) }
+    if (req.body.colors) for(let color of req.body.colors) { colors.push({...color}) }
 
     try {
       const newProduct = new productSchema(req.body);
