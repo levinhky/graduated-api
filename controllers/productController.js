@@ -7,16 +7,13 @@ const productController = {
   addProduct: async (req, res) => {
     const randomProductCode =  Math.random().toString(36).substring(2,7).toUpperCase();
     let sizes = [];
-    let colors = [];
     if (req.body.sizes) for(let size of req.body.sizes) { sizes.push({...size, productCode:(Math.random() + 1).toString(36).substring(7).toUpperCase()}) }
-    if (req.body.colors) for(let color of req.body.colors) { colors.push({...color}) }
 
     try {
       const newProduct = new productSchema(req.body);
       newProduct.slug = slugify(req.body.name);
       newProduct.sku = randomProductCode; 
-      newProduct.variants.sizes = sizes;
-      newProduct.variants.colors = colors;
+      newProduct.sizes = sizes;
       const savedProduct = await newProduct.save();
       if (req.body.categoryId) {
         const category = await categorySchema.findById(req.body.categoryId);

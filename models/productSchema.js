@@ -32,20 +32,13 @@ const productSchema = new mongoose.Schema({
   sku: {
     type: String
   },
-  variants: {
-    sizes: [
-      {
-        size:String,
-        quantity:Number,
-        productCode: String
-      }
-    ],
-    colors: [
-      {
-        name:String
-      }
-    ]
-  },
+  sizes: [
+    {
+      size:String,
+      quantity:Number,
+      productCode: String
+    }
+  ],
   categoryId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
