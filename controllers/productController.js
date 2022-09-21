@@ -86,7 +86,7 @@ const productController = {
   updateAProduct: async (req, res) => {
     try {
       const product = await productSchema.findById(req.params.id);
-      await product.updateOne({ $set: req.body, slug: slugify(req.body.productName) });
+      await product.updateOne({ $set: req.body, slug: slugify(req.body.name) });
       products = await productSchema.find({});
       return res.status(200).json(products);
     } catch (error) {
