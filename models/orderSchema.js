@@ -18,6 +18,9 @@ const orderSchema = new mongoose.Schema({
   },
   userId: {
     type: String
+  },
+  status: {
+    type: String
   }
 }, {timestamps:true});
 
