@@ -7,7 +7,12 @@ const productController = {
   addProduct: async (req, res) => {
     const randomProductCode =  Math.random().toString(36).substring(2,7).toUpperCase();
     let sizes = [];
-    if (req.body.sizes) for(let size of req.body.sizes) { sizes.push({...size, productCode:(Math.random() + 1).toString(36).substring(7).toUpperCase()}) }
+    if (req.body.sizes) for(let size of req.body.sizes) { sizes.push(
+        {...size,
+          productCode:(Math.random() + 1).toString(36).substring(7).toUpperCase(),
+          id: Math.floor(Math.random() * 6) + 1
+        }
+    ) }
 
     try {
       const newProduct = new productSchema(req.body);
