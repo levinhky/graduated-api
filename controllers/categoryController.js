@@ -37,6 +37,18 @@ const categoryController = {
     }
   },
 
+  // GET CATEGORY BY ID
+  getACategoryById: async (req, res) => {
+    try {
+      // const category = await categorySchema.findById(req.params.id).populate('products');
+      // return res.status(200).json(category);
+      console.log(req.params.id)
+    } catch (error) {
+      console.log(error);
+      return  res.status(500).json(error);
+    }
+  },
+
   // UPDATE A CATEGORY
   updateACategory: async (req, res) => {
     try {

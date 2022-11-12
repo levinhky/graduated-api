@@ -8,6 +8,7 @@ router.post('/', categoryController.addCategory);
 router.get('/', categoryController.getAllCategories);
 // find one category
 router.get('/find', categoryController.getACategory);
+router.get('/:id',categoryController.getACategoryById);
 // update category
 router.put('/update/:id', categoryController.updateACategory);
 // delete category
