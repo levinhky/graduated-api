@@ -8,6 +8,7 @@ router.post('/', productController.addProduct);
 router.get('/', productController.getAllProducts);
 //GET A PRODUCT
 router.get('/find', productController.getAProduct);
+router.get('/find/category', productController.getProductByCategory);
 router.get('/:id',productController.getAProductById)
 // UPDATE A PRODUCT
 router.put('/update/:id', productController.updateAProduct);

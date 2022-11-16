@@ -72,11 +72,21 @@ const productController = {
     }
   },
 
+  getProductByCategory: async (req, res) => {
+    try {
+      const product = await productSchema.find({ category_slug: req.query.name });
+      console.log(product)
+      return res.status(200).json(product);
+    } catch (error) {
+      console.log(error);
+      return  res.status(500).json(error);
+    }
+  },
+
   getAProductById: async (req, res) => {
     try {
       const product = await productSchema.findById(req.params.id).populate('categoryId');
       console.log(req.params.id)
-      console.log('hehe')
       return res.status(200).json(product);
     } catch (error) {
       console.log(error);
