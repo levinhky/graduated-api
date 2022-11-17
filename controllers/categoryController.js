@@ -1,5 +1,6 @@
 const categorySchema = require('../models/categorySchema');
 const productSchema = require('../models/productSchema');
+const {slugify} = require("../global/functions");
 
 const categoryController = {
 
@@ -7,6 +8,7 @@ const categoryController = {
   addCategory: async (req, res) => {
     try {
       const newCategory = new categorySchema(req.body);
+      newCategory.category_slug = slugify(req.body.name)
       const savedCategory = await newCategory.save();
       return res.status(200).json(savedCategory);
     } catch (error) {
