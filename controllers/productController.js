@@ -60,7 +60,12 @@ const productController = {
                 products = await productSchema.find({}).sort({name: -1});
             } else if (sort === 'name-asc') {
                 products = await productSchema.find({}).sort({name: 1});
+            } else if (sort === 'price-desc') {
+                products = await productSchema.find({}).sort({price: -1});
+            } else if (sort === 'price-asc') {
+                products = await productSchema.find({}).sort({price: 1});
             }
+
             return res.status(200).json(products);
         } catch (error) {
             console.log(error);
