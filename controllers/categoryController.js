@@ -31,7 +31,7 @@ const categoryController = {
   // GET A CATEGORY
   getACategory: async (req, res) => {
     try {
-      const category = await categorySchema.findOne({ categoryName: req.query.name }).populate('products');
+      const category = await categorySchema.findOne({ name: req.query.name }).populate('products');
       return res.status(200).json(category);
     } catch (error) {
       console.log(error);
