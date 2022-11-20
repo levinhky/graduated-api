@@ -88,8 +88,18 @@ const categoryController = {
       console.log(error);
       return  res.status(500).json(error);
     }
-  }
+  },
 
+  // GET LENGTH
+  getRows: async (req,res) => {
+    try {
+      const totalRows = await categorySchema.countDocuments({}).exec();
+      return res.status(200).json(totalRows);
+    } catch (error) {
+      console.log(error);
+      return  res.status(500).json(error);
+    }
+  }
 };
 
 module.exports = categoryController;
