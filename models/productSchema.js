@@ -50,6 +50,6 @@ const productSchema = new mongoose.Schema({
   }
 }, {timestamps:true});
 
-productSchema.index({ "name": "text" }, { unique:true });
+productSchema.index({ "name": "text" }, { unique:false });
 
 module.exports = mongoose.model('Product', productSchema);
