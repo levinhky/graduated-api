@@ -54,7 +54,7 @@ const categoryController = {
   updateACategory: async (req, res) => {
     try {
       const category = await categorySchema.findById(req.params.id);
-      await category.updateOne({ $set: req.body, category_slug:req.body.name });
+      await category.updateOne({ $set: req.body, category_slug:slugify(req.body.name) });
       const categories = await categorySchema.find();
       return res.status(200).json(categories);
     } catch (error) {
