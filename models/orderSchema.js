@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    orderId: {
-        type: String
-    },
+    orderId: String,
     userId: String,
-    total:String,
+    total: String,
+    fullName: String,
+    email: String,
+    phoneNumber: Number,
+    address: String,
+    deliveryMethod: String,
+    paymentMethod: String,
     products: [
         {
             productId: String,
@@ -14,12 +18,6 @@ const orderSchema = new mongoose.Schema({
             sku: String,
             quantity: Number,
             status: String,
-            fullName: String,
-            email: String,
-            phoneNumber: Number,
-            address: String,
-            deliveryMethod: String,
-            paymentMethod: String
         }
     ],
 }, {timestamps: true});
