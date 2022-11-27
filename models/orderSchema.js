@@ -10,16 +10,11 @@ const orderSchema = new mongoose.Schema({
     address: String,
     deliveryMethod: String,
     paymentMethod: String,
-    products: [
-        {
-            productId: String,
-            name: String,
-            price: Number,
-            sku: String,
-            quantity: Number,
-            status: String,
-        }
-    ],
+    name: String,
+    price: Number,
+    sku: String,
+    quantity: Number,
+    status: String,
 }, {timestamps: true});
 
 module.exports = mongoose.model('Order', orderSchema);
