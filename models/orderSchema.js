@@ -13,6 +13,7 @@ const orderSchema = new mongoose.Schema({
     name: String,
     price: Number,
     sku: String,
+    slug: String,
     quantity: Number,
     status: String,
 }, {timestamps: true});
