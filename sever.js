@@ -10,7 +10,8 @@ const router = require('express').Router();
 //routes
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
-const commentRoute = require('./routes/comment')
+const commentRoute = require('./routes/comment');
+const orderRoute = require('./routes/order');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,6 +27,7 @@ mongoose.connect(process.env.MONGODB_URL, () => {
 app.use('/api/v2/categories', categoryRoute);
 app.use('/api/v2/products', productRoute);
 app.use('/api/v2/comments', commentRoute);
+app.use('/api/v2/orders', orderRoute);
 
 router.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
