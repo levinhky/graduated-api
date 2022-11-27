@@ -12,6 +12,7 @@ const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
 const commentRoute = require('./routes/comment');
 const orderRoute = require('./routes/order');
+const authRoute = require('./routes/auth');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +29,7 @@ app.use('/api/v2/categories', categoryRoute);
 app.use('/api/v2/products', productRoute);
 app.use('/api/v2/comments', commentRoute);
 app.use('/api/v2/orders', orderRoute);
+app.use('/api/v2/auth', authRoute);
 
 router.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

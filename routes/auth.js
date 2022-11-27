@@ -1,0 +1,10 @@
+const authController = require('../controllers/authController');
+
+const router = require('express').Router();
+
+router.post('/register',authController.registerUser);
+router.post('/login',authController.loginUser);
+router.get('/users',authController.getAllUsers);
+router.delete('/delete/:id',authController.deleteUser);
+
+module.exports = router;
