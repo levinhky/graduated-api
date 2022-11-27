@@ -14,6 +14,11 @@ const orderSchema = new mongoose.Schema({
     price: Number,
     sku: String,
     slug: String,
+    sizes: [
+        {
+            size:String,
+        }
+    ],
     quantity: Number,
     status: String,
 }, {timestamps: true});
