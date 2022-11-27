@@ -14,11 +14,11 @@ const orderSchema = new mongoose.Schema({
             quantity: Number,
             status: String,
             fullName: String,
-            Email: String,
-            PhoneNumber: Number,
-            Address: String,
-            DeliveryMethod: String,
-            PaymentMethod: String
+            email: String,
+            phoneNumber: Number,
+            address: String,
+            deliveryMethod: String,
+            paymentMethod: String
         }
     ],
 }, {timestamps: true});
