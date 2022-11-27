@@ -4,6 +4,7 @@ const orderSchema = new mongoose.Schema({
     orderId: {
         type: String
     },
+    userId: String,
     products: [
         {
             productId: String,
@@ -11,7 +12,6 @@ const orderSchema = new mongoose.Schema({
             price: Number,
             sku: String,
             quantity: Number,
-            userId: String,
             status: String,
             fullName: String,
             Email: String,
