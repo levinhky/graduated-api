@@ -28,7 +28,7 @@ const orderController = {
     // GET AN ORDER
     getAnOrder: async (req, res) => {
         try {
-            const order = await orderSchema.find({userId: req.params.id});
+            const order = await orderSchema.findById(req.params.id);
             return res.status(200).json(order);
         } catch (error) {
             console.log(error);
