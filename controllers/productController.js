@@ -37,7 +37,7 @@ const productController = {
     // GET ALL PRODUCTS
     getAllProducts: async (req, res) => {
         let limit = req.query.limit;
-        let page = req.query.page;
+        let page = req.query.page || 1;
         let search = req.query.q;
         let products = null;
         let sort = req.query.sort;
@@ -45,7 +45,7 @@ const productController = {
             if (!limit && !page) {
                 products = await productSchema.find({});
             } else {
-                products = await productSchema.find().limit(limit).skip(page);
+                products = await productSchema.find().skip((limit * page) - limit).limit(limit);
             }
 
             if (search) {
