@@ -36,6 +36,18 @@ const orderController = {
         }
     },
 
+    // GET ORDER BY USER ID
+    getOrderByUser: async (req, res) => {
+        try {
+            const order = await orderSchema.find({userId: req.params.id});
+            console.log(req.params.id)
+            return res.status(200).json(order);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json(error);
+        }
+    },
+
     // UPDATE AN ORDER
     updateAnOrder: async (req, res) => {
         try {
