@@ -9,7 +9,7 @@ router.get('/', commentController.getComments);
 // find comment by id
 router.get('/:id', commentController.getSpecificComment);
 // get comment by product
-router.get('/find', commentController.getCommentByProduct);
+router.get('/find/:id', commentController.getCommentByProduct);
 // update category
 router.put('/update/:id', commentController.updateAComment);
 // delete category

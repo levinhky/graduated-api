@@ -34,7 +34,7 @@ const commentController = {
 
     getCommentByProduct: async (req, res) => {
         try {
-          const comments = await commentSchema.find({ productId: req.query.id });
+          const comments = await commentSchema.find({ productId: req.params.id });
           return res.status(200).json(comments);
         } catch (error) {
           console.log(error);
