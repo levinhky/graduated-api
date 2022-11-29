@@ -4,7 +4,7 @@ const commentSchema = new mongoose.Schema({
     productId: {
         type: String
       },
-      content: {
+      commentContent: {
         type: String
       },
       displayName: {
@@ -14,8 +14,7 @@ const commentSchema = new mongoose.Schema({
         type: String
       },
       userId: {
-        type: String,
-        required: true
+        type: String
       }
 }, {timestamps:true});
 
