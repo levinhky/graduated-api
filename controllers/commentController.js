@@ -1,7 +1,7 @@
 const commentSchema = require('../models/commentSchema');
 
 const commentController = {
-     addComment: async (req,res) => {
+    addComment: async (req, res) => {
         try {
             const newComment = new commentSchema(req.body);
             const savedComment = await newComment.save();
@@ -9,18 +9,18 @@ const commentController = {
             return res.status(200).json(comments);
         } catch (error) {
             console.log(error);
-            return  res.status(500).json(error);
+            return res.status(500).json(error);
         }
     },
 
-    getComments: async (req,res) => {
+    getComments: async (req, res) => {
         try {
             const comments = await commentSchema.find();
             return res.status(200).json(comments);
-          } catch (error) {
+        } catch (error) {
             console.log(error);
-            return  res.status(500).json(error);
-          }
+            return res.status(500).json(error);
+        }
     },
 
     getSpecificComment: async (req, res) => {
@@ -29,19 +29,19 @@ const commentController = {
             return res.status(200).json(comments);
         } catch (error) {
             console.log(error);
-            return  res.status(500).json(error);
+            return res.status(500).json(error);
         }
     },
 
     getCommentByProduct: async (req, res) => {
         try {
-          const comments = await commentSchema.find({ productId: req.params.id });
-          return res.status(200).json(comments);
+            const comments = await commentSchema.find({productId: req.params.id});
+            return res.status(200).json(comments);
         } catch (error) {
-          console.log(error);
-          return  res.status(500).json(error);
+            console.log(error);
+            return res.status(500).json(error);
         }
-      },
+    },
 
     updateAComment: async (req, res) => {
         try {
@@ -66,15 +66,15 @@ const commentController = {
         }
     },
 
-    dropComments: async (req,res) => {
+    dropComments: async (req, res) => {
         try {
-          await commentSchema.deleteMany();
-          return res.json('Comments are empty now!'); 
+            await commentSchema.deleteMany();
+            return res.json('Comments are empty now!');
         } catch (error) {
-          console.log(error);
-          return  res.status(500).json(error);
+            console.log(error);
+            return res.status(500).json(error);
         }
-      }
+    }
 };
 
 module.exports = commentController;
