@@ -29,14 +29,14 @@ const authController = {
         try {
             const user = await userSchema.findOne({username: req.body.username});
             if (!user) {
-               return res.status(404).json('wrong username');
+               return res.status(404).json('Tài khoản không chính xác');
             }
             const validPassword = await bcrypt.compare(
                 req.body.password,
                 user.password
             )
             if (!validPassword) {
-                return res.status(404).json('wrong password');
+                return res.status(404).json('Mật khẩu không chính xác');
             }
 
             if (user && validPassword) {
