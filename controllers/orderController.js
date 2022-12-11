@@ -73,6 +73,17 @@ const orderController = {
             return res.status(500).json(error);
         }
     },
+
+    // DELETE ALL ORDER
+    dropOrder: async (req, res) => {
+        try {
+            await orderSchema.deleteMany();
+            return res.json('Orders are empty now!')
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json(error);
+        }
+    },
 }
 
 module.exports = orderController;
