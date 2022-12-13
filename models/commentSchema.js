@@ -3,19 +3,22 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
     productId: {
         type: String
-      },
-      commentContent: {
+    },
+    commentContent: {
         type: String
-      },
-      displayName: {
+    },
+    displayName: {
         type: String
-      },
-      photoUrl: {
+    },
+    photoUrl: {
         type: String
-      },
-      userId: {
+    },
+    display: {
+        type: Boolean
+    },
+    userId: {
         type: String
-      }
-}, {timestamps:true});
+    }
+}, {timestamps: true});
 
 module.exports = mongoose.model('Comment', commentSchema);

@@ -10,11 +10,11 @@ router.get('/', commentController.getComments);
 router.get('/:id', commentController.getSpecificComment);
 // get comment by product
 router.get('/find/:id', commentController.getCommentByProduct);
-// update category
+// update comment
 router.put('/update/:id', commentController.updateAComment);
-// delete category
+// delete comment
 router.delete('/delete/:id', commentController.deleteAComment);
-// delete all category
+// delete all comment
 router.delete('/drop', commentController.dropComments);
 
 module.exports = router;
