@@ -10,13 +10,13 @@ const orderSchema = new mongoose.Schema({
     address: String,
     deliveryMethod: String,
     shipping: String,
-    quantity: Number,
     products: [
         {
             name: String,
             price: Number,
             sku: String,
             slug: String,
+            quantity: Number,
             sizes: [
                 {
                     size:String,
