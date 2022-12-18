@@ -12,7 +12,7 @@ router.get('/:id', orderController.getAnOrder);
 router.get('/user/:id', orderController.getOrderByUser);
 // update an order
 router.put('/update/:id', orderController.updateAnOrder);
-router.delete('/xoahet', orderController.dropOrder);
+router.delete('/drop', orderController.dropOrder);
 // delete an order
 router.delete('/delete/:id', orderController.deleteAnOrder);
 

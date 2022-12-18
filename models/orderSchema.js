@@ -10,17 +10,21 @@ const orderSchema = new mongoose.Schema({
     address: String,
     deliveryMethod: String,
     shipping: String,
-    name: String,
-    price: Number,
-    sku: String,
-    slug: String,
-    sizes: [
+    quantity: Number,
+    products: [
         {
-            size:String,
-            quantity:Number
+            name: String,
+            price: Number,
+            sku: String,
+            slug: String,
+            sizes: [
+                {
+                    size:String,
+                    quantity:Number
+                }
+            ],
         }
     ],
-    quantity: Number,
     status: String,
 }, {timestamps: true});
 
