@@ -153,7 +153,7 @@ const productController = {
     getRows: async (req, res) => {
         try {
             const totalRows = await productSchema.aggregate([
-                {$count: "Total"}
+                {$count: "count"}
             ]);
             //  const totalRows = await productSchema.countDocuments().exec();
             return res.status(200).json(totalRows);
