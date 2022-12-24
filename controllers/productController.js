@@ -42,6 +42,7 @@ const productController = {
         let products = null;
         let sort = req.query.sort;
         let totalPages = 0;
+        let total = 0;
         try {
             if (!limit && !page) {
                 products = await productSchema.find({});
@@ -51,7 +52,7 @@ const productController = {
 
             if (search) {
                 products = await productSchema.find({$text: {$search: search}});
-                const total = await productSchema.countDocuments({});
+                total = await productSchema.countDocuments({});
                 totalPages = Math.ceil(total / limit);
             }
 
@@ -89,9 +90,13 @@ const productController = {
     },
 
     getProductByCategory: async (req, res) => {
+        let limit = req.query.limit;
+        let page = req.query.page || 1;
         try {
-            const product = await productSchema.find({category_slug: req.query.name});
-            return res.status(200).json(product);
+            const products = await productSchema.find({category_slug: req.query.name}).skip((page - 1) * limit).limit(limit);
+            const total = await productSchema.find({category_slug: req.query.name}).countDocuments({});
+            totalPages = Math.ceil(total / limit);
+            return res.status(200).json({totalPages, products});
         } catch (error) {
             console.log(error);
             return res.status(500).json(error);
