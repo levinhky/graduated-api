@@ -1,4 +1,5 @@
 const orderSchema = require('../models/orderSchema');
+const mailer = require('../global/mailer');
 
 const orderController = {
 
@@ -78,12 +79,22 @@ const orderController = {
     dropOrder: async (req, res) => {
         try {
             await orderSchema.deleteMany();
-            return res.json('Orders are empty now!')
+            return res.status(200).json('Orders are empty now!')
         } catch (error) {
             console.log(error);
             return res.status(500).json(error);
         }
     },
+     sendMail: async (req, res) => {
+        try {
+            const to = req.query.to;
+            const html = req.query.html;
+            await mailer.sendMail(to, 'Your Pashi order confirmation', html);
+            return res.status(200).json('Send email successfully');
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = orderController;

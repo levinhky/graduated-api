@@ -13,6 +13,7 @@ router.get('/user/:id', orderController.getOrderByUser);
 // update an order
 router.put('/update/:id', orderController.updateAnOrder);
 router.delete('/drop', orderController.dropOrder);
+router.post('/sendmail', orderController.sendMail);
 // delete an order
 router.delete('/delete/:id', orderController.deleteAnOrder);
 
