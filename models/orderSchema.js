@@ -10,6 +10,7 @@ const orderSchema = new mongoose.Schema({
     address: String,
     deliveryMethod: String,
     shipping: String,
+    notes:String,
     products: [
         {
             name: String,
