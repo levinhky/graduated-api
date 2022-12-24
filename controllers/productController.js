@@ -41,32 +41,36 @@ const productController = {
         let search = req.query.q;
         let products = null;
         let sort = req.query.sort;
+        let totalPages = 0;
         try {
             if (!limit && !page) {
                 products = await productSchema.find({});
             } else {
-                products = await productSchema.find().skip((limit * page) - limit).limit(limit);
+                products = await productSchema.find().skip((page - 1) * limit).limit(limit);
             }
 
             if (search) {
-                products = await productSchema.find({$text: {$search: search}})
+                products = await productSchema.find({$text: {$search: search}});
+                const total = await productSchema.countDocuments({});
+                totalPages = Math.ceil(total / limit);
             }
 
             if (sort === 'asc') {
-                products = await productSchema.find({}).sort({_id: 1});
+                products = await productSchema.find({}).sort({_id: 1}).skip((page - 1) * limit).limit(limit);
             } else if (sort === 'desc') {
-                products = await productSchema.find({}).sort({_id: -1});
+                products = await productSchema.find({}).sort({_id: -1}).skip((page - 1) * limit).limit(limit);
             } else if (sort === 'name-desc') {
-                products = await productSchema.find({}).sort({name: -1});
+                products = await productSchema.find({}).sort({name: -1}).skip((page - 1) * limit).limit(limit);
             } else if (sort === 'name-asc') {
-                products = await productSchema.find({}).sort({name: 1});
+                products = await productSchema.find({}).sort({name: 1}).skip((page - 1) * limit).limit(limit);
             } else if (sort === 'price-desc') {
-                products = await productSchema.find({}).sort({price: -1});
+                products = await productSchema.find({}).sort({price: -1}).skip((page - 1) * limit).limit(limit);
             } else if (sort === 'price-asc') {
-                products = await productSchema.find({}).sort({price: 1});
+                products = await productSchema.find({}).sort({price: 1}).skip((page - 1) * limit).limit(limit);
             }
-
-            return res.status(200).json(products);
+            const total = await productSchema.countDocuments({});
+            totalPages = Math.ceil(total / limit);
+            return res.status(200).json({totalPages, products});
         } catch (error) {
             console.log(error);
             return res.status(500).json(error);
