@@ -52,8 +52,6 @@ const productController = {
 
             if (search) {
                 products = await productSchema.find({$text: {$search: search}});
-                total = await productSchema.countDocuments({});
-                totalPages = Math.ceil(total / limit);
             }
 
             if (sort === 'asc') {
@@ -69,7 +67,7 @@ const productController = {
             } else if (sort === 'price-asc') {
                 products = await productSchema.find({}).sort({price: 1}).skip((page - 1) * limit).limit(limit);
             }
-            const total = await productSchema.countDocuments({});
+            total = await productSchema.countDocuments({});
             totalPages = Math.ceil(total / limit);
             return res.status(200).json({totalPages, products});
         } catch (error) {
