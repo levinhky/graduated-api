@@ -89,9 +89,10 @@ const orderController = {
         try {
             const currentdate = new Date();
             const to = req.query.to;
+            const name = req.body.fullName;
             const html = `<div class="content">
                 <div class="welcome">
-                    Dear kyle,
+                    Dear ${name},
                     Thank you for your order from Pashi.
                     If you have any question about your order,
                     you can email us at <a href="mailto:pashion.shopping@gmail.com">pashion.shopping@gmail.com</a>
