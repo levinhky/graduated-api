@@ -23,4 +23,8 @@ function slugify(string) {
     .replace(/Đ/g, "D")
 }
 
-module.exports = { slugify };
+function vnd(price) {
+  return String(price).replace(/(.)(?=(\d{3})+$)/g, "$1.") + " VNĐ";
+}
+
+module.exports = { slugify, vnd };
