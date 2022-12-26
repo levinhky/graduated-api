@@ -14,6 +14,7 @@ router.get('/user/:id', orderController.getOrderByUser);
 router.put('/update/:id', orderController.updateAnOrder);
 router.delete('/drop', orderController.dropOrder);
 router.post('/sendmail', orderController.sendMail);
+router.post('/sendregister', orderController.sendRegister);
 // delete an order
 router.delete('/delete/:id', orderController.deleteAnOrder);
 

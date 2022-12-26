@@ -160,6 +160,32 @@ const orderController = {
             console.log(error);
             return res.status(500).json(error);
         }
+    },
+    sendRegister: async (req, res) => {
+        try {
+            const to = req.query.to;
+            const { fullName } = req.body;
+            const html = `<div class="content">
+                <h1>Welcome to Pashi</h1>
+                <div class="welcome">
+                    Dear ${fullName},
+                    Thank you for your registration . <br>
+                    <b>Our website link</b>: <a href="https://pashion.netlify.app">pashion.netlify.app</a> <br>
+                    <b>Facebook</b>: <a href="https://pashion.netlify.app">Pashi Shop</a>  <br>
+                    <b>Twitter</b>: <a href="https://pashion.netlify.app">Pashi</a> <br>
+                    <b>Instagram</b>: <a href="https://pashion.netlify.app">pashi.shop</a>
+                </div>
+                    <footer>
+                       
+                    </footer>
+                </div>
+            </div>`;
+            await mailer.sendMail(to, `Thank you ${fullName} for your registration  on Pashi`, html);
+            return res.status(200).json('Send email successfully');
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json(error);
+        }
     }
 }
 
