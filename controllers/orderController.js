@@ -95,7 +95,7 @@ const orderController = {
                 return `
                     <td>${product.name}</td>
                     <td style="text-align: right">${product.quantity}</td>
-                    <td style="text-align: right">${product.price}</td>
+                    <td style="text-align: right">${vnd(product.price)}</td>
                  `;
             });
             const html = `<div class="content">
