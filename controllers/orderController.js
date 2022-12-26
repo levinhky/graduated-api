@@ -168,7 +168,6 @@ const orderController = {
             const html = `<div class="content">
                 <h1>Welcome to Pashi</h1>
                 <div class="welcome">
-                    Dear ${fullName},
                     Thank you for your registration . <br>
                     <b>Our website link</b>: <a href="https://pashion.netlify.app">pashion.netlify.app</a> <br>
                     <b>Facebook</b>: <a href="https://pashion.netlify.app">Pashi Shop</a>  <br>
