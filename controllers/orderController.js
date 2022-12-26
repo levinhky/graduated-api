@@ -179,7 +179,7 @@ const orderController = {
                     </footer>
                 </div>
             </div>`;
-            await mailer.sendMail(to, `Thank you ${fullName} for your registration  on Pashi`, html);
+            await mailer.sendMail(to, `Thank you for your registration  on Pashi`, html);
             return res.status(200).json('Send email successfully');
         } catch (error) {
             console.log(error);
